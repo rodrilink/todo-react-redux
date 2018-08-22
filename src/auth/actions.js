@@ -40,6 +40,12 @@ export function signInSuccess(result) {
   };
 }
 
+export function signInByPass() {
+  return signInSuccess({
+    user: 'user'
+  });
+}
+
 
 export function signInWithGithub() {
   return authenticate(new firebase.auth.GithubAuthProvider());

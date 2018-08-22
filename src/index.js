@@ -21,7 +21,7 @@ function render(Component) {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <Component/>
+          <Component />
         </div>
       </ConnectedRouter>
     </Provider>,

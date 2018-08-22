@@ -16,7 +16,8 @@ import {
 
 export function createTask(title) {
   return dispatch => {
-    taskList.push({completed: false, title})
+    // console.log(title, taskList);
+    taskList.push({ completed: false, title })
       .catch(error => dispatch(createTaskError(error)));
   };
 }
@@ -29,6 +30,10 @@ export function createTaskError(error) {
 }
 
 export function createTaskSuccess(task) {
+
+
+  // console.log(''task)
+
   return {
     type: CREATE_TASK_SUCCESS,
     payload: task
@@ -60,7 +65,7 @@ export function undeleteTask() {
   return (dispatch, getState) => {
     const task = getDeletedTask(getState());
     if (task) {
-      taskList.set(task.key, {completed: task.completed, title: task.title})
+      taskList.set(task.key, { completed: task.completed, title: task.title })
         .catch(error => dispatch(undeleteTaskError(error)));
     }
   };
@@ -95,6 +100,11 @@ export function updateTaskSuccess(task) {
 }
 
 export function loadTasksSuccess(tasks) {
+
+  // console.log('loadTasksSuccess: ', tasks);
+
+  // tasks.push('hola');
+
   return {
     type: LOAD_TASKS_SUCCESS,
     payload: tasks
@@ -104,12 +114,15 @@ export function loadTasksSuccess(tasks) {
 export function filterTasks(filterType) {
   return {
     type: FILTER_TASKS,
-    payload: {filterType}
+    payload: { filterType }
   };
 }
 
 export function loadTasks() {
   return (dispatch, getState) => {
+
+    // console.log('#1');
+
     const { auth } = getState();
     taskList.path = `tasks/${auth.id}`;
     taskList.subscribe(dispatch);
